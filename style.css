@@ -1,0 +1,154 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 100vh;
+    background-color: #87CEEB; 
+    margin: 0;
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.road {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #333;
+    overflow: hidden;
+}
+
+.road::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: repeating-linear-gradient(to right, #FFF, #FFF 20px, #333 20px, #333 40px);
+    animation: roadMove 1s linear infinite;
+}
+
+.car-container {
+    position: absolute;
+    bottom: 25px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px; 
+    height: auto; 
+}
+
+.car-image {
+    width: 100%; 
+    height: 100px; 
+}
+
+.headlight {
+    position: absolute;
+    top: 45px; 
+    left: 85px; 
+    width: 0; 
+    height: 0; 
+    border-top: 0 solid transparent;
+    border-bottom: 0 solid transparent;
+    border-left: 0 solid transparent;
+    border-radius: 100%;
+}
+
+.light-beam {
+    position: absolute;
+    top: 29px;
+    left: 190px; 
+    width: 0;
+    height: 0;
+    border-top: 30px solid rgb(113 113 86 / 0%);
+    border-bottom: 30px solid rgb(228 45 45 / 0%);
+    border-left: 200px solid rgba(255, 225, 0, 0.16); 
+    border-radius: 700%;
+    transform: rotate(180deg);
+}
+
+@keyframes roadMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-200px); }
+}
+
+@keyframes rotateWheel {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.front-wheel {
+    left: 29px; 
+    bottom: 27px;
+}
+
+.back-wheel {
+    right: 38px; 
+    bottom: 27px;
+}
+
+.wheel {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: black; 
+    border-radius: 50%; 
+    border: 4px solid #524e4e;
+    animation: rotateWheel 1s linear infinite;
+}
+
+.wheel::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: #777;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.wheel::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 24px;
+    background-color: #ccc;
+    transform-origin: center;
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.wheel-spokes {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 24px;
+    background-color: #ccc;
+    transform-origin: center;
+    animation: rotateWheel 1s linear infinite;
+}
+
+.wheel::after::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 24px;
+    background-color: #ccc; 
+    transform-origin: center;
+    transform: translate(-50%, -50%) rotate(90deg);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
